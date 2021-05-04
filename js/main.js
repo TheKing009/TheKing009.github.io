@@ -149,6 +149,7 @@
 	/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	    Preview Pannel
 	-=-=-=-=-=-=-=-=-=--=-=-=-=-=-*/
+
 	function previewPannel() {
 	    $(".switcher-trigger").on("click", function() {
 	        $(".preview-wrapper").toggleClass("extend");
@@ -159,19 +160,66 @@
 	    }
 	    $(".color-options li").on("click", function(){
 	        if ($("body").hasClass("back-step")) {
+				var color = $(this).attr("data-color")
 	            $("#color-changer").attr({
-	                "href":"../css/colors/"+$(this).attr("data-color")+".css"
+	                "href":"../css/colors/" + color + ".css"
 	            });
+				setCookie("color", color, 30);
 	        }else {
+				var color = $(this).attr("data-color")
 	            $("#color-changer").attr({
-	                "href":"css/colors/"+$(this).attr("data-color")+".css"
+	                "href":"css/colors/"+ color +".css"
 	            });
+				setCookie("color", color, 30);
 	        }
 	        return false;
 	    });
 	}
+
+	/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+		Cookies (Yum Yum)
+	-=-=-=-=-=-=-=-=-=--=-=-=-=-=-*/
+
+	function setCookie(cname, cvalue, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+		var expires = "expires=" + d.toUTCString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+
+	function getCookie(cname) {
+		var name = cname + "=";
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+
+	function checkColorCookie() {
+		var color = getCookie("color");
+		if (color != "") {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	$(window).on("load", function() {
+		if (checkColorCookie())
+		{
+			var color = getCookie('color');
+			$("#color-changer").attr({
+				"href": "css/colors/" + color + ".css"
+			});
+		}
+
 		$(".preloader").addClass("active");
 		isotopeMasonry();
 		setTimeout(function () {
