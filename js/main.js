@@ -211,17 +211,15 @@
 			return false;
 		}
 	}
-
-	$( document ).ready(function() {
+	
+	$(window).on("load", function() {
 		if (checkColorCookie()) {
 			var color = getCookie('color');
 			$("#color-changer").attr({
 				"href": "css/colors/" + color + ".css"
 			});
 		}
-	});
-	
-	$(window).on("load", function() {
+
 		$(".preloader").addClass("active");
 		isotopeMasonry();
 		setTimeout(function () {
