@@ -603,6 +603,17 @@ textarea, label {
   font-family: "Open Sans", sans-serif;
 }
 
+.skill-asterisk {
+  margin-left: 4px;
+  margin-right: 4px;
+  vertical-align: sub;
+}
+
+.skill-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .progress {
   background-color: #1e2530;
   border-radius: 2px;
