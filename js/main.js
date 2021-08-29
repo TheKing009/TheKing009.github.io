@@ -29,7 +29,7 @@
 			}
 		}
 	});
-	
+
 	animatedProgressBar();
 	windowHieght();
 	contactFormValidation();
@@ -53,7 +53,7 @@
 			$(".pt-table").removeClass("desktop-768");
 		}
 	}
-	
+
 	/*----------------------------------------
 		contact form validation
 	------------------------------------------*/
@@ -92,7 +92,8 @@
 		        $(form).ajaxSubmit({
 		            type: "POST",
 		            data: $(form).serialize(),
-		            url : "mail.php",
+		            url : "https://formsubmit.co/ajax/kashyapaayush32@gmail.com",
+		            dataType: "json",
 		            success: function() {
 		                $(".contact-form").fadeTo( "slow", 1, function() {
 		                    $(".contact-form .msg-success").slideDown();
@@ -110,7 +111,7 @@
 		        element.after(error);
 		        error.hide().slideDown();
 		    }
-		}); 
+		});
 	}
 
 	/*----------------------------------------
@@ -155,8 +156,8 @@
 	        $(".preview-wrapper").toggleClass("extend");
 	        return false;
 	    });
-	    if ($(window).width() < 768 ) {            
-	        //$(".preview-wrapper").removeClass("extend");            
+	    if ($(window).width() < 768 ) {
+	        //$(".preview-wrapper").removeClass("extend");
 	    }
 	    $(".color-options li").on("click", function(){
 	        if ($("body").hasClass("back-step")) {
@@ -220,7 +221,7 @@
 			});
 		}
 	});
-	
+
 	$(window).on("load", function() {
 		$(".preloader").addClass("active");
 		isotopeMasonry();
